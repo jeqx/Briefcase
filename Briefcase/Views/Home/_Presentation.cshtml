@@ -1,0 +1,30 @@
+﻿@using Briefcase.Services
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model PersonRepository
+
+@{
+    string ShowAge(PersonRepository _person) => 
+        _person.ShowAge == true ? $"({ Age(_person.BirthDate).ToString()})" : string.Empty;
+
+    int Age( System.DateTime date)
+    {
+        var now = DateTime.Now.Date;
+
+        var age = now.Year - date.Year;
+
+        return date < now ? age - 1  : age;      
+    } 
+}
+
+<div class="text-center">
+    <h1 class="display-4">
+        I'm @Model.FirstName @Model.LastName @ShowAge(Model)
+    </h1>
+    <h2>
+        Developer Full-Stack in the Ecosystem .NET
+    </h2>
+    <img id="photo_profile" src= "/images/photo_profile.png" alt="Photo to Perfil"/>
+</div>
